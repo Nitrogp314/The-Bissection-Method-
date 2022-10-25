@@ -1,0 +1,35 @@
+def bissecao_iter(f,a,b,xtol=1e-8):
+    "Função que encontra uma das raízes de uma função num intervalo [a,b] utilizando o método da bisseção."
+    while abs(b-a)>=xtol: # Continua a dividir o intervalo em dois
+   
+    # testar o sinal de f(m) com o sinal de f(a) e f(b)
+    # Ex: se o sinal de f(a) e f(m) tem sinais opostos, quer dizer que tem uma raiz ali dentro:  f(m)*f(a)<0
+        m=(a+b)/2
+        
+        if f(m)*f(a)<0:
+            b=m
+        # A nova bisseção deve continuar no intervalo  [a,m]
+            
+        else:
+            a=m
+            
+    return (a+b)/2
+
+# OBS: O significqado do intervalo [a,b] muda dentro do While
+
+
+# ----------------------------------------- Beyond this line, the Bissection Method is written in recursive form -----------------------------------
+
+def bissecao(f,a,b,xtol=1e-8):
+    "Função que encontra uma das raízes de uma função num intervalo [a,b] utilizando o método da bisseção."
+    m=(a+b)/2
+    if abs(b-a)<xtol:
+        return m
+   
+    # testar o sinal de f(m) com o sinal de f(a) e f(b)
+    # Ex: se o sinal de f(a) e f(m) tem sinais opostos, quer dizer que tem uma raiz ali dentro:  f(m)*f(a)<0
+    if f(m)*f(a)<0:
+        # A nova bisseção deve continuar no intervalo  [a,m]
+        return bissecao(f,a,m,xtol)
+    else:
+        return bissecao(f,m,b,xtol)
